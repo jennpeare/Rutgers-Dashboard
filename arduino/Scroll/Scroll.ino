@@ -12,8 +12,8 @@ String blank = "                    ";
 String s = "Hello world!";
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("Waiting for time sync message");
+  //Serial.begin(9600);
+  //Serial.println("Waiting for time sync message");
   lcd.begin(20, 2);  // set up the LCD's number of columns and rows
   lcd.noCursor();
 }
