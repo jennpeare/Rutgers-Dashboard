@@ -2,3 +2,4 @@ env
 secrets.py
 *.pyc
 .Python
+*.swp
