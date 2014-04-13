@@ -4,8 +4,10 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world(name=None):
-    return render_template('index.html',name=name)
+def hello_world():
+	weather = "hello"
+	return render_template('index.html', weather=weather)
+
 
 @app.route("/weather")
 def get_weather():

@@ -39,8 +39,8 @@ body {
   font-size: 100%; }
 
 body {
-  background: white;
-  color: #222222;
+  background: #B8B8B8;
+  color: white;
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -1771,6 +1771,7 @@ meta.foundation-mq-topbar {
   margin-right: 0;
   padding: 0;
   list-style: none;
+  color: white;
   overflow: hidden; }
   .inline-list > li {
     list-style: none;
