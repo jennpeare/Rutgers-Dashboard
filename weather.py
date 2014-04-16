@@ -3,11 +3,12 @@ from pprint import pprint
 from secrets import wunder_key
 
 weatherURL="http://api.wunderground.com/api/" + wunder_key + "/conditions/q/autoip.json"
-current_cond = []
+
 def main():
     cc = get_weather()
     for s in cc:
         print s
+    pprint(requests.get(weatherURL).json())
 
 def get_weather():
     weatherdata = requests.get(weatherURL).json()
@@ -15,10 +16,12 @@ def get_weather():
     location = weatherdata["current_observation"]["display_location"]
     degree_sign= u"\N{DEGREE SIGN}"
 
-    current_cond.append("Location: " + location["city"] + ", " + location["state"]) # location
-    current_cond.append("Current Condition: " + info["weather"])
-    current_cond.append("Current temperature: " + str(info["temp_f"]) + degree_sign + "F | " + str(info["temp_c"]) + degree_sign + "C") 
-    current_cond.append("Feels like: " + str(info["feelslike_f"]) + degree_sign + "F | " + str(info["feelslike_c"]) + degree_sign + "C")
+    current_cond = {}
+    current_cond["location"] = location["city"] + ", " + location["state"] # location
+    current_cond["cond_image"] = info["icon_url"]
+    current_cond["condition"] = info["weather"]
+    current_cond["temp_f"] = str(info["temp_f"]) + degree_sign + "F"
+    current_cond["temp_c"] = str(info["temp_c"]) + degree_sign + "C"
 
     return current_cond
 

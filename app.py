@@ -3,14 +3,16 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-	weather = "hello"
-	return render_template('index.html', weather=weather)
+@app.route("/")
+@app.route("/index.html")
+def index():
+    return render_template("index.html",
+        weather = weather.get_weather(),
+        quote = quote.format_quote(quote.get_quote()))
 
 @app.route("/weather")
 def get_weather():
-    return flask.jsonify(current_cond = weather.get_weather())
+    return flask.jsonify(weather.get_weather())
 
 @app.route("/food")
 def get_food():

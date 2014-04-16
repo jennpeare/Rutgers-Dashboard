@@ -1,88 +1,104 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rutgers Dashboard</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-  </head>
-  <body>
-    
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutgers Dashboard</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
   <!-- Requires Foundation 4 | visit http://foundation.zurb.com to download -->
-<div class="row">
+  <div class="row">
     <div class="large-12 columns">
-    
-    
-		<p><p><p><p><p><p><p><p> 
-      <!-- Header Content -->
- 
+
+      <p><p><p><p><p><p><p><p>
+
+        <!-- Banner -->
+        <img src="{{ url_for('static', filename='header.png') }}">
+
+        <!-- Header Content -->
         <div class="row">
- 
+
           <div class="large-6 columns">
- 				<p> {{ weather }}'s banana </p>
-          </div>
- 
- 
-          <div class="large-6 columns">
- 
-            <h3 class="show-for-small">Header<hr/></h3>
- 
             <div class="panel">
               <h4 class="hide-for-small">Header<hr/></h4>
-            <h5 class="subheader">Fusce ullamcorper mauris in eros dignissim molestie posuere felis blandit. Aliquam erat volutpat. Mauris ultricies posuere vehicula. Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros. Pellentesque consectetur tempus mi iaculis bibendum. Ut vel dolor sed eros tincidunt volutpat ac eget leo.</h5>
+              <h5 class="subheader">Fusce ullamcorper mauris in eros dignissim molestie posuere felis blandit. Aliquam erat volutpat. Mauris ultricies posuere vehicula. Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros. Pellentesque consectetur tempus mi iaculis bibendum. Ut vel dolor sed eros tincidunt volutpat ac eget leo.</h5>
             </div>
- 
-          <div class="row">
+          </div>
+
+
+          <div class="large-6 columns">
+
+            <h3 class="show-for-small">Header<hr/></h3>
+
+            <div class="panel">
+              <h4 class="hide-for-small">Quote<hr/></h4>
+              <h5 class="subheader">{{ quote.quote }}</h5>
+              {% if quote.author %}
+                <h5 class="subheader" style="text-align: right">-- {{ quote.author }}</h5>
+              {% endif %}
+            </div>
+
+            <div class="row">
               <div class="large-6 small-6 columns">
                 <div class="panel">
                   <h5>Buses</h5>
-                <h6 class="subheader">A </h6>
-                <h6 class="subheader">B </h6>
-                <h6 class="subheader">C </h6>
+                  <h6 class="subheader">A </h6>
+                  <h6 class="subheader">B </h6>
+                  <h6 class="subheader">C </h6>
                 </div>
               </div>
- 
+
               <div class="large-6 small-6 columns">
                 <div class="panel">
-                  <h5>Weather</h5>
-                <h6 class="subheader">Praesent placerat dui tincidunt elit suscipit sed.</h6>
-                </div>
-              </div>
-          </div>
- 
-          </div>
- 
-        </div>
- 
-      <!-- End Header Content -->
- 
-      <!-- Footer -->
- 
-        <footer class="row">
-        <div class="large-12 columns"><hr />
-            <div class="row">
- 
-              <div class="large-6 columns">
-                  <p size = "10px"> Last updated 13 April 2014</p>
-              </div>
- 
-              <div class="large-6 columns">
-                  <ul class="inline-list right" >
-                    <li><a href="" >Home</a></li>
-         	 		<li><a href="#">Buses</a></li>
-          			<li><a href="http://127.0.0.1:5000/weather">Weather</a></li>
-          			<li><a href="#">Dining</a></li>
-          			<li><a href="#">Calendar</a></li>
-                  </ul>
+                  <h5 class="hide-for-small">Weather<hr/></h5>
+                  <table style="border: none; background: #f2f2f2; text-align: center">
+                    <tr><td colspan="2">{{ weather.location }}</td></tr>
+                    <tr style="background: #f2f2f2;">
+                      <td><img src="{{ weather.cond_image }}"></td>
+                      <td>{{ weather.temp_f }} ({{ weather.temp_c }})</td>
+                    </tr>
+                    <tr><td colspan="2">{{ weather.condition }}</td></tr>
+                  </table>
+                </ul>
               </div>
             </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- End Header Content -->
+
+      <!-- Footer -->
+
+      <footer class="row">
+        <div class="large-12 columns"><hr />
+          <div class="row">
+
+            <div class="large-6 columns">
+              <p size = "10px"> Last updated 13 April 2014</p>
+            </div>
+
+            <div class="large-6 columns">
+              <ul class="inline-list right" >
+                <li><a href="" >Home</a></li>
+                <li><a href="#">Buses</a></li>
+                <li><a href="/weather">Weather</a></li>
+                <li><a href="#">Dining</a></li>
+                <li><a href="#">Calendar</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </footer>
- 
+
       <!-- End Footer -->
- 
- 
+
+
     </div>
-  </div>                          
-  </body>
+  </div>
+</body>
 </html></html>
