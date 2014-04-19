@@ -6,9 +6,8 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index.html")
 def index():
-    return render_template("index.html",
-        weather = weather.get_weather(),
-        quote = quote.format_quote(quote.get_quote()))
+    return render_template("index.html", weather = weather.get_weather(), quote = quote.format_quote(quote.get_quote()))
+    #return render_template("index.html", weather = "weather", quote = "quote")
 
 @app.route("/weather")
 def get_weather():

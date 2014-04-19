@@ -39,8 +39,8 @@ body {
   font-size: 100%; }
 
 body {
-  background: #B8B8B8;
-  color: white;
+  background: white;
+  color: #222222;
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -1771,7 +1771,6 @@ meta.foundation-mq-topbar {
   margin-right: 0;
   padding: 0;
   list-style: none;
-  color: white;
   overflow: hidden; }
   .inline-list > li {
     list-style: none;
@@ -5262,32 +5261,3 @@ th.hide-for-touch {
 
 .touch th.show-for-touch {
   display: table-cell !important; }
-
-.accordion {
-  *zoom: 1;
-  margin-bottom: 0; }
-  .accordion:before, .accordion:after {
-    content: " ";
-    display: table; }
-  .accordion:after {
-    clear: both; }
-  .accordion dd {
-    display: block;
-    margin-bottom: 0 !important; }
-    .accordion dd.active > a {
-      background: #e8e8e8; }
-    .accordion dd > a {
-      background: #efefef;
-      color: #222222;
-      padding: 1rem;
-      display: block;
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-      font-size: 1rem; }
-      .accordion dd > a:hover {
-        background: #e3e3e3; }
-  .accordion .content {
-    display: none;
-    padding: 0.9375em; }
-    .accordion .content.active {
-      display: block;
-      background: white; }
