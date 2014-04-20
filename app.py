@@ -1,4 +1,4 @@
-import flask, weather, food, quote
+import flask, weather, food, quote, bus
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -15,7 +15,9 @@ def test():
     return render_template("test.html",
       weather = weather.get_weather(),
       quote = quote.format_quote(quote.get_quote()),
-      food = food.get_food_master()
+      food = food.get_food_master(),
+      bus_bcc = bus.get_predictions_for("Busch Campus Center"),
+      bus_hill = bus.get_predictions_for("Hill Center")
       )
 
 @app.route("/weather")

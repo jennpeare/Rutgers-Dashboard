@@ -22,7 +22,7 @@
           <dd data-magellan-arrival="links"><a href="#links">Useful Links</a></dd>
           <dd data-magellan-arrival="quote"><a href="#quote">Quote</a></dd>
           <dd data-magellan-arrival="weather"><a href="#weather">Weather</a></dd>
-          <dd data-magellan-arrival="bus"><a href="#bus">Nextbus</a></dd>
+          <dd data-magellan-arrival="bus"><a href="#bus">Bus</a></dd>
           <dd data-magellan-arrival="noms"><a href="#noms">Food</a></dd>
         </dl>
       </div>
@@ -36,13 +36,27 @@
       <!-- Useful links -->
       <a name="links"></a>
       <h3 data-magellan-destination="links">Useful Links</h3>
+      <ul class="disc">
+        <li>List item with a much longer description or more content.</li>
+        <li>List item</li>
+        <li>List item
+          <ul>
+            <li>Nested List Item</li>
+            <li>Nested List Item</li>
+            <li>Nested List Item</li>
+          </ul>
+        </li>
+        <li>List item</li>
+        <li>List item</li>
+        <li>List item</li>
+      </ul>
 
       <!-- Quote -->
       <a name="quote"></a>
       <h3 data-magellan-destination="quote">Quote</h3>
-        <blockquote>{{ quote.quote }}
-        {% if quote.author %}
-        <cite>{{ quote.author }}</cite>
+        <blockquote>{{ quote["quote"] }}
+        {% if quote["author"] %}
+        <cite>{{ quote["author"] }}</cite>
         {% endif %}
         </blockquote>
 
@@ -51,10 +65,10 @@
       <h3 data-magellan-destination="weather">Weather</h3>
       <div class="panel text-center" style="width: 25%;">
         <img src="{{ weather.cond_image }}">
-        <h3><small>{{ weather.condition }}</small></h3>
-        <h3><span data-tooltip class="has-tip tip-right" title="{{ weather.temp_c }}">{{ weather.temp_f }}</span></h3>
+        <h3><small>{{ weather["condition"] }}</small></h3>
+        <h3><span data-tooltip class="has-tip tip-right" title="{{ weather.temp_c }}">{{ weather["temp_f"] }}</span></h3>
         <p></p>
-        <h5><small>{{ weather.location }}</small></h5>
+        <h5><small>{{ weather["location"] }}</small></h5>
         <hr/>
         <a href="{{ weather.url }}" target="_blank" class="button tiny">Full Forecast</a>
       </div>
@@ -62,15 +76,54 @@
       <!-- Bus -->
       <a name="bus"></a>
       <h3 data-magellan-destination="bus">Bus</h3>
+      <div class="row">
+        <div class="large-6 columns text-center">
+          <ul class="pricing-table">
+            <li class="title">Hill Center</li>
+            {% for route in bus_hill %}
+              <li class="price">{{ route["route"] }}</li>
+              <li class="description">{{ route["direction"] }}</li>
+              <li class="bullet-item">Arriving in
+              {% for min in route["predictions"] %}
+                {% if loop.index == loop.length %}
+                  {{ min }}
+                {% else %}
+                  {{ min }},
+                {% endif %}
+              {% endfor %}
+              minutes</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="large-6 columns text-center">
+          <ul class="pricing-table">
+            <li class="title">Busch Campus Center</li>
+            {% for route in bus_bcc %}
+              <li class="price">{{ route["route"] }}</li>
+              <li class="description">{{ route["direction"] }}</li>
+              <li class="bullet-item">Arriving in
+              {% for min in route["predictions"] %}
+                {% if loop.index == loop.length %}
+                  {{ min }}
+                {% else %}
+                  {{ min }},
+                {% endif %}
+              {% endfor %}
+              minutes</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
 
       <!-- Food -->
       <a name="noms"></a>
       <h3 data-magellan-destination="noms">Food</h3>
 
-      <dl class="accordion" data-accordion>
+      <dl class="accordion" style="width: 50%;" data-accordion>
         <dd>
           <a href="#busch">Busch Dining Commons</a>
-          <div id="busch" class="content">
+          <div id="busch" class="content active">
             <dl class="tabs" data-tab>
               <dd><a href="#busch_breakfast">Breakfast</a></dd>
               <dd><a href="#busch_lunch">Lunch</a></dd>
@@ -82,7 +135,7 @@
                 <div class="content" id="{{meal}}">
                   {% if food["busch"][meal] %}
                     {% for genre in food["busch"][meal] %}
-                      <span class="label">{{ genre.name }}</span>
+                      <span class="label">{{ genre["name"] }}</span>
                       <ul class="no-bullet">
                       {% for item in genre["items"] %}
                         <li>{{ item }}</li>
@@ -112,7 +165,7 @@
                 <div class="content" id="{{meal}}">
                   {% if food["livi"][meal] %}
                     {% for genre in food["livi"][meal] %}
-                      <span class="label">{{ genre.name }}</span>
+                      <span class="label">{{ genre["name"] }}</span>
                       <ul class="no-bullet">
                       {% for item in genre["items"] %}
                         <li>{{ item }}</li>
@@ -142,7 +195,7 @@
                 <div class="content" id="{{meal}}">
                   {% if food["brower"][meal] %}
                     {% for genre in food["brower"][meal] %}
-                      <span class="label">{{ genre.name }}</span>
+                      <span class="label">{{ genre["name"] }}</span>
                       <ul class="no-bullet">
                       {% for item in genre["items"] %}
                         <li>{{ item }}</li>
@@ -172,7 +225,7 @@
                 <div class="content" id="{{meal}}">
                   {% if food["neilson"][meal] %}
                     {% for genre in food["neilson"][meal] %}
-                      <span class="label">{{ genre.name }}</span>
+                      <span class="label">{{ genre["name"] }}</span>
                       <ul class="no-bullet">
                       {% for item in genre["items"] %}
                         <li>{{ item }}</li>
