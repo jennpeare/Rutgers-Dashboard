@@ -30,5 +30,5 @@ def get_quote():
     return flask.jsonify(quote.format_quote(quote.get_quote()))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
     app.run(host="0.0.0.0", port=8080)
