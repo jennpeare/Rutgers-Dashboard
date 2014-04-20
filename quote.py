@@ -1,7 +1,7 @@
 import requests, json
 from pprint import pprint
 
-quoteURL = "http://www.iheartquotes.com/api/v1/random?format=json&max_lines=3&source=literature"
+quoteURL = "http://www.iheartquotes.com/api/v1/random?format=json&max_lines=3&source=misc"
 
 def main():
     quote = get_quote()
@@ -19,7 +19,7 @@ def format_quote(quote):
         quote = quote[0:dash].rstrip()
     else:
         author = ""
-    
+
     q = {}
     q["quote"] = quote
     q["author"] = author

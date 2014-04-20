@@ -13,8 +13,8 @@ def index():
 def test():
     #return render_template("index.html", weather = weather.get_weather(), quote = quote.format_quote(quote.get_quote()))
     return render_template("test.html",
-      weather = "weather",
-      quote = "quote",
+      weather = weather.get_weather(),
+      quote = quote.format_quote(quote.get_quote()),
       food = food.get_food_master()
       )
 

@@ -6,174 +6,212 @@
     <title>Rutgers Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}">
     <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
   </head>
   <body>
 
     <!-- Header -->
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-12 columns text-center">
         <img src="{{ url_for('static', filename='img/header.png') }}">
+        <h1 id="clock"></h1><h3 class="subheader" id="date"></h3>
       </div>
       <hr/>
       <div data-magellan-expedition="fixed">
         <dl class="sub-nav">
           <dd data-magellan-arrival="links"><a href="#links">Useful Links</a></dd>
-          <dd data-magellan-arrival="nextbus"><a href="#nextbus">Nextbus</a></dd>
-          <dd data-magellan-arrival="noms"><a href="#noms">Noms</a></dd>
           <dd data-magellan-arrival="quote"><a href="#quote">Quote</a></dd>
           <dd data-magellan-arrival="weather"><a href="#weather">Weather</a></dd>
+          <dd data-magellan-arrival="bus"><a href="#bus">Nextbus</a></dd>
+          <dd data-magellan-arrival="noms"><a href="#noms">Food</a></dd>
         </dl>
       </div>
       <hr/>
     </div>
     <!-- End Header -->
 
+    <!-- Begin content -->
     <div class="row">
 
-    <a name="quote"></a>
-    <h3 data-magellan-destination="quote">Quote</h3>
-      <p>{{ quote.quote }}</p>
-      {% if quote.author %}
-      <p style="text-align: right">-- {{ quote.author }}</p>
-      {% endif %}
+      <!-- Useful links -->
+      <a name="links"></a>
+      <h3 data-magellan-destination="links">Useful Links</h3>
 
-    <a name="weather"></a>
-    <h3 data-magellan-destination="weather">Weather</h3>
-      <p>{{ weather.location }}</p>
-      <p style="text-align: center;">
-        <img src="{{ weather.cond_image }}"><br/>
-        {{ weather.condition }}<br/>
-        {{ weather.temp_f }} ({{ weather.temp_c }})
-      </p>
+      <!-- Quote -->
+      <a name="quote"></a>
+      <h3 data-magellan-destination="quote">Quote</h3>
+        <blockquote>{{ quote.quote }}
+        {% if quote.author %}
+        <cite>{{ quote.author }}</cite>
+        {% endif %}
+        </blockquote>
 
-    <a name="noms"></a>
-    <h3 data-magellan-destination="noms">Food</h3>
+      <!-- Weather -->
+      <a name="weather"></a>
+      <h3 data-magellan-destination="weather">Weather</h3>
+      <div class="panel text-center" style="width: 25%;">
+        <img src="{{ weather.cond_image }}">
+        <h3><small>{{ weather.condition }}</small></h3>
+        <h3><span data-tooltip class="has-tip tip-right" title="{{ weather.temp_c }}">{{ weather.temp_f }}</span></h3>
+        <p></p>
+        <h5><small>{{ weather.location }}</small></h5>
+        <hr/>
+        <a href="{{ weather.url }}" target="_blank" class="button tiny">Full Forecast</a>
+      </div>
 
-    <dl class="accordion" data-accordion>
-      <dd>
-        <a href="#busch">Busch Dining Commons</a>
-        <div id="busch" class="content">
-          <dl class="tabs" data-tab>
-            <dd><a href="#busch_breakfast">Breakfast</a></dd>
-            <dd><a href="#busch_lunch">Lunch</a></dd>
-            <dd><a href="#busch_dinner">Dinner</a></dd>
-            <dd><a href="#busch_takeout">Takeout</a></dd>
-          </dl>
-          <div class="tabs-content">
-            {% for meal in food["busch"] %}
-              <div class="content" id="{{meal}}">
-                {% if food["busch"][meal] %}
-                  {% for genre in food["busch"][meal] %}
-                    <span class="label">{{ genre.name }}</span>
-                    <ul class="no-bullet">
-                    {% for item in genre["items"] %}
-                      <li>{{ item }}</li>
+      <!-- Bus -->
+      <a name="bus"></a>
+      <h3 data-magellan-destination="bus">Bus</h3>
+
+      <!-- Food -->
+      <a name="noms"></a>
+      <h3 data-magellan-destination="noms">Food</h3>
+
+      <dl class="accordion" data-accordion>
+        <dd>
+          <a href="#busch">Busch Dining Commons</a>
+          <div id="busch" class="content">
+            <dl class="tabs" data-tab>
+              <dd><a href="#busch_breakfast">Breakfast</a></dd>
+              <dd><a href="#busch_lunch">Lunch</a></dd>
+              <dd><a href="#busch_dinner">Dinner</a></dd>
+              <dd><a href="#busch_takeout">Takeout</a></dd>
+            </dl>
+            <div class="tabs-content">
+              {% for meal in food["busch"] %}
+                <div class="content" id="{{meal}}">
+                  {% if food["busch"][meal] %}
+                    {% for genre in food["busch"][meal] %}
+                      <span class="label">{{ genre.name }}</span>
+                      <ul class="no-bullet">
+                      {% for item in genre["items"] %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                      </ul>
                     {% endfor %}
-                    </ul>
-                  {% endfor %}
-                {% else %}
-                  <div class="panel callout radius"><p>Menu unavailable</p></div>
-                {% endif %}
-              </div>
-            {% endfor %}
+                  {% else %}
+                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
           </div>
-        </div>
-      </dd>
+        </dd>
 
-      <dd>
-        <a href="#livingston">Livingston Dining Commons</a>
-        <div id="livingston" class="content">
-          <dl class="tabs" data-tab>
-            <dd><a href="#livi_breakfast">Breakfast</a></dd>
-            <dd><a href="#livi_lunch">Lunch</a></dd>
-            <dd><a href="#livi_dinner">Dinner</a></dd>
-            <dd><a href="#livi_takeout">Takeout</a></dd>
-          </dl>
-          <div class="tabs-content">
-            {% for meal in food["livi"] %}
-              <div class="content" id="{{meal}}">
-                {% if food["livi"][meal] %}
-                  {% for genre in food["livi"][meal] %}
-                    <span class="label">{{ genre.name }}</span>
-                    <ul class="no-bullet">
-                    {% for item in genre["items"] %}
-                      <li>{{ item }}</li>
+        <dd>
+          <a href="#livingston">Livingston Dining Commons</a>
+          <div id="livingston" class="content">
+            <dl class="tabs" data-tab>
+              <dd><a href="#livi_breakfast">Breakfast</a></dd>
+              <dd><a href="#livi_lunch">Lunch</a></dd>
+              <dd><a href="#livi_dinner">Dinner</a></dd>
+              <dd><a href="#livi_takeout">Takeout</a></dd>
+            </dl>
+            <div class="tabs-content">
+              {% for meal in food["livi"] %}
+                <div class="content" id="{{meal}}">
+                  {% if food["livi"][meal] %}
+                    {% for genre in food["livi"][meal] %}
+                      <span class="label">{{ genre.name }}</span>
+                      <ul class="no-bullet">
+                      {% for item in genre["items"] %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                      </ul>
                     {% endfor %}
-                    </ul>
-                  {% endfor %}
-                {% else %}
-                  <div class="panel callout radius"><p>Menu unavailable</p></div>
-                {% endif %}
-              </div>
-            {% endfor %}
+                  {% else %}
+                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
           </div>
-        </div>
-      </dd>
+        </dd>
 
-      <dd>
-        <a href="#brower">Brower Commons</a>
-        <div id="brower" class="content">
-          <dl class="tabs" data-tab>
-            <dd><a href="#brower_breakfast">Breakfast</a></dd>
-            <dd><a href="#brower_lunch">Lunch</a></dd>
-            <dd><a href="#brower_dinner">Dinner</a></dd>
-            <dd><a href="#brower_takeout">Takeout</a></dd>
-          </dl>
-          <div class="tabs-content">
-            {% for meal in food["brower"] %}
-              <div class="content" id="{{meal}}">
-                {% if food["brower"][meal] %}
-                  {% for genre in food["brower"][meal] %}
-                    <span class="label">{{ genre.name }}</span>
-                    <ul class="no-bullet">
-                    {% for item in genre["items"] %}
-                      <li>{{ item }}</li>
+        <dd>
+          <a href="#brower">Brower Commons</a>
+          <div id="brower" class="content">
+            <dl class="tabs" data-tab>
+              <dd><a href="#brower_breakfast">Breakfast</a></dd>
+              <dd><a href="#brower_lunch">Lunch</a></dd>
+              <dd><a href="#brower_dinner">Dinner</a></dd>
+              <dd><a href="#brower_takeout">Takeout</a></dd>
+            </dl>
+            <div class="tabs-content">
+              {% for meal in food["brower"] %}
+                <div class="content" id="{{meal}}">
+                  {% if food["brower"][meal] %}
+                    {% for genre in food["brower"][meal] %}
+                      <span class="label">{{ genre.name }}</span>
+                      <ul class="no-bullet">
+                      {% for item in genre["items"] %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                      </ul>
                     {% endfor %}
-                    </ul>
-                  {% endfor %}
-                {% else %}
-                  <div class="panel callout radius"><p>Menu unavailable</p></div>
-                {% endif %}
-              </div>
-            {% endfor %}
+                  {% else %}
+                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
           </div>
-        </div>
-      </dd>
+        </dd>
 
-      <dd>
-        <a href="#neilson">Neilson Dining Hall</a>
-        <div id="neilson" class="content">
-          <dl class="tabs" data-tab>
-            <dd><a href="#neilson_breakfast">Breakfast</a></dd>
-            <dd><a href="#neilson_lunch">Lunch</a></dd>
-            <dd><a href="#neilson_dinner">Dinner</a></dd>
-            <dd><a href="#neilson_takeout">Takeout</a></dd>
-          </dl>
-          <div class="tabs-content">
-            {% for meal in food["neilson"] %}
-              <div class="content" id="{{meal}}">
-                {% if food["neilson"][meal] %}
-                  {% for genre in food["neilson"][meal] %}
-                    <span class="label">{{ genre.name }}</span>
-                    <ul class="no-bullet">
-                    {% for item in genre["items"] %}
-                      <li>{{ item }}</li>
+        <dd>
+          <a href="#neilson">Neilson Dining Hall</a>
+          <div id="neilson" class="content">
+            <dl class="tabs" data-tab>
+              <dd><a href="#neilson_breakfast">Breakfast</a></dd>
+              <dd><a href="#neilson_lunch">Lunch</a></dd>
+              <dd><a href="#neilson_dinner">Dinner</a></dd>
+              <dd><a href="#neilson_takeout">Takeout</a></dd>
+            </dl>
+            <div class="tabs-content">
+              {% for meal in food["neilson"] %}
+                <div class="content" id="{{meal}}">
+                  {% if food["neilson"][meal] %}
+                    {% for genre in food["neilson"][meal] %}
+                      <span class="label">{{ genre.name }}</span>
+                      <ul class="no-bullet">
+                      {% for item in genre["items"] %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                      </ul>
                     {% endfor %}
-                    </ul>
-                  {% endfor %}
-                {% else %}
-                  <div class="panel callout radius"><p>Menu unavailable</p></div>
-                {% endif %}
-              </div>
-            {% endfor %}
+                  {% else %}
+                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
           </div>
+        </dd>
+      </dl>
+
+
+    </div>
+    <!-- End content  -->
+
+    <!-- Begin Footer -->
+    <div class="row">
+      <hr/>
+      <div class="large-12 columns">
+        <div class="large-6 columns">
+          <p>Last updated 20 April 2014</p>
         </div>
-      </dd>
 
+        <div class="large-6 columns">
+          <ul class="inline-list right" >
+            <li><a href="" >Home</a></li>
+            <li><a href="#">Buses</a></li>
+            <li><a href="/weather">Weather</a></li>
+            <li><a href="#">Dining</a></li>
+            <li><a href="#">Calendar</a></li>
+          </ul>
+        </div>
 
-    </dl>
-
-
+      </div>
     </div>
 
     <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
@@ -182,6 +220,7 @@
     <script src="{{ url_for('static', filename='js/foundation/foundation.magellan.js') }}"></script>
     <script>
       $(document).foundation();
+			setInterval("time()", 200);
     </script>
   </body>
 </html>
