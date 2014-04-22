@@ -14,25 +14,25 @@ def get_food_master():
     busch["busch_breakfast"] = get_food_dhall("Busch Dining Hall", "Breakfast")
     busch["busch_lunch"] = get_food_dhall("Busch Dining Hall", "Lunch")
     busch["busch_dinner"] = get_food_dhall("Busch Dining Hall", "Dinner")
-    busch["busch_takeout"] = get_food_dhall("Busch Dining Hall", "Takeout")
+    busch["busch_takeout"] = get_food_dhall("Busch Dining Hall", "Knight Room")
 
     livi = {}
     livi["livi_breakfast"] = get_food_dhall("Livingston Dining Commons", "Breakfast")
     livi["livi_lunch"] = get_food_dhall("Livingston Dining Commons", "Lunch")
     livi["livi_dinner"] = get_food_dhall("Livingston Dining Commons", "Dinner")
-    livi["livi_takeout"] = get_food_dhall("Livingston Dining Commons", "Takeout")
+    livi["livi_takeout"] = get_food_dhall("Livingston Dining Commons", "Knight Room")
 
     brower = {}
     busch["brower_breakfast"] = get_food_dhall("Brower Commons", "Breakfast")
     busch["brower_lunch"] = get_food_dhall("Brower Commons", "Lunch")
     busch["brower_dinner"] = get_food_dhall("Brower Commons", "Dinner")
-    busch["brower_takeout"] = get_food_dhall("Brower Commons", "Takeout")
+    busch["brower_takeout"] = get_food_dhall("Brower Commons", "Knight Room")
 
     neilson = {}
     livi["neilson_breakfast"] = get_food_dhall("Neilson Dining Hall", "Breakfast")
     livi["neilson_lunch"] = get_food_dhall("Neilson Dining Hall", "Lunch")
     livi["neilson_dinner"] = get_food_dhall("Neilson Dining Hall", "Dinner")
-    livi["neilson_takeout"] = get_food_dhall("Neilson Dining Hall", "Takeout")
+    livi["neilson_takeout"] = get_food_dhall("Neilson Dining Hall", "Knight Room")
 
     food["busch"] = busch
     food["livi"] = livi

@@ -1,23 +1,22 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rutgers Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}">
-    <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutgers Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}">
+  <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
+</head>
+<body>
 
-    <!-- Header -->
-    <div class="row">
-      <div class="large-12 columns text-center">
-        <img src="{{ url_for('static', filename='img/header.png') }}">
-        <h1 id="clock"></h1><h3 class="subheader" id="date"></h3>
-      </div>
-      <hr/>
-      <div data-magellan-expedition="fixed">
+  <!-- Header -->
+  <div class="row">
+    <div class="large-12 columns text-center">
+      <img src="{{ url_for('static', filename='img/header.png') }}">
+      <h1 id="clock"></h1><h3 class="subheader" id="date"></h3>
+      <hr>
+      <div class="magellan-container" data-magellan-expedition="fixed">
         <dl class="sub-nav">
           <dd data-magellan-arrival="links"><a href="#links">Useful Links</a></dd>
           <dd data-magellan-arrival="quote"><a href="#quote">Quote</a></dd>
@@ -26,81 +25,93 @@
           <dd data-magellan-arrival="noms"><a href="#noms">Food</a></dd>
         </dl>
       </div>
-      <hr/>
+      <hr>
     </div>
-    <!-- End Header -->
+  </div>
+  <!-- End Header -->
 
-    <!-- Begin content -->
+  <!-- Begin content -->
+  <div class="row"><div class="large-12 columns">
+
+    <!-- Useful links -->
+    <p><a name="links"></a></p>
+    <h3 data-magellan-destination="links">Useful Links</h3>
+
+    <span class="label">Academic</span>
+    <ul class="disc">
+      <li><a href="http://sasundergrad.rutgers.edu/academics/advising" target="_blank">Academic Advising</a></li>
+      <li><a href="https://my.rutgers.edu" target="_blank">myRutgers</a></li>
+      <li><a href="https://services.jsatech.com/index.php?cid=52" target="_blank">RUExpress</a></li>
+      <li><a href="http://getinvolved.rutgers.edu/programs-and-events/events-calendar/?from=&to=&sponsor=9&type=&campus=&keyword=&x=22&y=2" target="_blank">RUPA Events</a></li>
+      <li><a href="https://sakai.rutgers.edu/" target="_blank">Rutgers eCollege</a></li>
+      <li><a href="https://sakai.rutgers.edu/" target="_blank">Sakai</a></li>
+      <li><a href="http://www.studentabc.rutgers.edu/" target="_blank">Student Accounting</a></li>
+      <li><a href="http://scheduling.rutgers.edu/calendar.shtml" target="_blank">Term Dates</a></li>
+      <li><a href="https://sis.rutgers.edu/tags/" target="_blank">Unofficial Transcript</a></li>
+    </ul>
+
+    <span class="label">Careers</span>
+    <ul class="disc">
+      <li><a href="https://rutgers-csm.symplicity.com/students/" target="_blank">CareerKnight</a></li>
+      <li><a href="http://careers.rutgers.edu/" target="_blank">Career Services</li>
+    </ul>
+
+    <span class="label">Computer Science</span>
+    <ul class="disc">
+      <li><a href="http://www.cs.rutgers.edu/undergraduate/program.whtml" target="_blank">CS Department Information</li>
+      <li><a href="http://hackerspace.cs.rutgers.edu/" target="_blank">Hackerspace Homepage</a></li>
+      <li><a href=" http://www.cs.rutgers.edu/external/permission/" target="_blank">Request a CompSci SPN Q___Q</a></li>
+    </ul>
+
+    <span class="label">Scheduling</span>
+    <ul class="disc">
+      <li><a href="https://sims.rutgers.edu/csp/" target="_blank">Course Schedule Planner (CSP)</a></li>
+      <li><a href="http://sniper.rutgers.io/" target="_blank">Course Sniper</a></li>
+      <li><a href="http://sis.rutgers.edu/soc/" target="_blank">Schedule of Classes</a></li>
+      <li><a href="https://sims.rutgers.edu/webreg/" target="_blank">Webreg</a></li>
+    </ul>
+
+    <!-- Quote -->
+    <p><a name="quote"></a></p>
+    <h3 data-magellan-destination="quote">Quote</h3>
+    <blockquote>{{ quote["quote"] }}
+      {% if quote["author"] %}
+      <cite>{{ quote["author"] }}</cite>
+      {% endif %}
+    </blockquote>
+
+    <!-- Weather -->
+    <p><a name="weather"></a></p>
+    <h3 data-magellan-destination="weather">Weather</h3>
+    <div class="panel text-center">
+      <img src="{{ weather.cond_image }}">
+      <h3><small>{{ weather["condition"] }}</small></h3>
+      <h3><span data-tooltip class="has-tip tip-right" title="{{ weather.temp_c }}">{{ weather["temp_f"] }}</span></h3>
+      <p></p>
+      <h5><small>{{ weather["location"] }}</small></h5>
+      <hr/>
+      <a href="{{ weather.url }}" target="_blank" class="button tiny">Full Forecast</a>
+    </div>
+
+    <!-- Bus -->
+    <p><a name="bus"></a></p>
+    <h3 data-magellan-destination="bus">Bus</h3>
     <div class="row">
-
-      <!-- Useful links -->
-      <a name="links"></a>
-      <h3 data-magellan-destination="links">Useful Links</h3>
-      <ul class="disc">
-        <li><a href="https://my.rutgers.edu">myRutgers</a></li>
-        <li><a href="https://sakai.rutgers.edu/">Sakai</a></li>
-        <li><a href="https://sims.rutgers.edu/webreg/">Webreg</a></li>
-        <li><a href="http://sniper.rutgers.io/">Course Sniper</a></li>
-        <li><a href="http://sis.rutgers.edu/soc/">Schedule of Classes</a></li>
-        <li><a href="http://scheduling.rutgers.edu/calendar.shtml">Term Dates</a></li>
-        <li><a href="https://sis.rutgers.edu/tags/">Unofficial Transcript</a></li>
-        <li><a href="https://services.jsatech.com/index.php?cid=52">RUExpress</a></li>
-        <li><a href="http://sasundergrad.rutgers.edu/academics/advising">Academic Advising</a></li>
-        <li><a href="https://sakai.rutgers.edu/">Rutgers eCollege</a></li>
-       	<li><a href="http://www.studentabc.rutgers.edu/">Student Accounting</a></li>
-        <li><a href="http://getinvolved.rutgers.edu/programs-and-events/events-calendar/?from=&to=&sponsor=9&type=&campus=&keyword=&x=22&y=2">RUPA Events</a></li>
-       	<li><a href="http://hackerspace.cs.rutgers.edu/">Hackerspace Homepage</a></li>
-       	<li><a href=" http://www.cs.rutgers.edu/external/permission/">Request a CompSci SPN Q___Q</a></li>
-        <li>List item
-          <ul>
-            <li>Nested List Item</li>
-            <li>Nested List Item</li>
-            <li>Nested List Item</li>
-          </ul>
-        </li>
-      </ul>
-
-      <!-- Quote -->
-      <a name="quote"></a>
-      <h3 data-magellan-destination="quote">Quote</h3>
-        <blockquote>{{ quote["quote"] }}
-        {% if quote["author"] %}
-        <cite>{{ quote["author"] }}</cite>
-        {% endif %}
-        </blockquote>
-
-      <!-- Weather -->
-      <a name="weather"></a>
-      <h3 data-magellan-destination="weather">Weather</h3>
-      <div class="panel text-center" style="width: 25%;">
-        <img src="{{ weather.cond_image }}">
-        <h3><small>{{ weather["condition"] }}</small></h3>
-        <h3><span data-tooltip class="has-tip tip-right" title="{{ weather.temp_c }}">{{ weather["temp_f"] }}</span></h3>
-        <p></p>
-        <h5><small>{{ weather["location"] }}</small></h5>
-        <hr/>
-        <a href="{{ weather.url }}" target="_blank" class="button tiny">Full Forecast</a>
-      </div>
-
-      <!-- Bus -->
-      <a name="bus"></a>
-      <h3 data-magellan-destination="bus">Bus</h3>
-      <div class="row">
-        <div class="large-6 columns text-center">
-          <ul class="pricing-table">
-            <li class="title">Hill Center</li>
-            {% for route in bus_hill %}
-              <li class="price">{{ route["route"] }}</li>
-              <li class="description">{{ route["direction"] }}</li>
-              <li class="bullet-item">Arriving in
-              {% for min in route["predictions"] %}
-                {% if loop.index == loop.length %}
-                  {{ min }}
-                {% else %}
-                  {{ min }},
-                {% endif %}
+      <div class="large-6 columns text-center">
+        <ul class="pricing-table">
+          <li class="title">Hill Center</li>
+          {% for route in bus_hill %}
+          <li class="price">{{ route["route"] }}</li>
+          <li class="description">{{ route["direction"] }}</li>
+          <li class="bullet-item">Arriving in
+            {% for min in route["predictions"] %}
+              {% if loop.index == loop.length %}
+                {{ min }}
+              {% else %}
+                {{ min }},
+              {% endif %}
               {% endfor %}
-              minutes</li>
+            minutes</li>
             {% endfor %}
           </ul>
         </div>
@@ -109,9 +120,9 @@
           <ul class="pricing-table">
             <li class="title">Busch Campus Center</li>
             {% for route in bus_bcc %}
-              <li class="price">{{ route["route"] }}</li>
-              <li class="description">{{ route["direction"] }}</li>
-              <li class="bullet-item">Arriving in
+            <li class="price">{{ route["route"] }}</li>
+            <li class="description">{{ route["direction"] }}</li>
+            <li class="bullet-item">Arriving in
               {% for min in route["predictions"] %}
                 {% if loop.index == loop.length %}
                   {{ min }}
@@ -120,169 +131,169 @@
                 {% endif %}
               {% endfor %}
               minutes</li>
-            {% endfor %}
-          </ul>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- Food -->
-      <a name="noms"></a>
-      <h3 data-magellan-destination="noms">Food</h3>
+        <!-- Food -->
+        <a name="noms"></a>
+        <h3 data-magellan-destination="noms">Food</h3>
 
-      <dl class="accordion" style="width: 50%;" data-accordion>
-        <dd>
-          <a href="#busch">Busch Dining Commons</a>
-          <div id="busch" class="content active">
-            <dl class="tabs" data-tab>
-              <dd><a href="#busch_breakfast">Breakfast</a></dd>
-              <dd><a href="#busch_lunch">Lunch</a></dd>
-              <dd><a href="#busch_dinner">Dinner</a></dd>
-              <dd><a href="#busch_takeout">Takeout</a></dd>
-            </dl>
-            <div class="tabs-content">
-              {% for meal in food["busch"] %}
+        <dl class="accordion" data-accordion>
+          <dd>
+            <a href="#busch">Busch Dining Commons</a>
+            <div id="busch" class="content active">
+              <dl class="tabs" data-tab>
+                <dd><a href="#busch_breakfast">Breakfast</a></dd>
+                <dd><a href="#busch_lunch">Lunch</a></dd>
+                <dd><a href="#busch_dinner">Dinner</a></dd>
+                <dd><a href="#busch_takeout">Takeout</a></dd>
+              </dl>
+              <div class="tabs-content">
+                {% for meal in food["busch"] %}
                 <div class="content" id="{{meal}}">
                   {% if food["busch"][meal] %}
-                    {% for genre in food["busch"][meal] %}
-                      <span class="label">{{ genre["name"] }}</span>
-                      <ul class="no-bullet">
-                      {% for item in genre["items"] %}
-                        <li>{{ item }}</li>
-                      {% endfor %}
-                      </ul>
+                  {% for genre in food["busch"][meal] %}
+                  <span class="label">{{ genre["name"] }}</span>
+                  <ul class="no-bullet">
+                    {% for item in genre["items"] %}
+                    <li>{{ item }}</li>
                     {% endfor %}
+                  </ul>
+                  {% endfor %}
                   {% else %}
-                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  <div class="panel callout radius"><p>Menu unavailable</p></div>
                   {% endif %}
                 </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        </dd>
+          </dd>
 
-        <dd>
-          <a href="#livingston">Livingston Dining Commons</a>
-          <div id="livingston" class="content">
-            <dl class="tabs" data-tab>
-              <dd><a href="#livi_breakfast">Breakfast</a></dd>
-              <dd><a href="#livi_lunch">Lunch</a></dd>
-              <dd><a href="#livi_dinner">Dinner</a></dd>
-              <dd><a href="#livi_takeout">Takeout</a></dd>
-            </dl>
-            <div class="tabs-content">
-              {% for meal in food["livi"] %}
+          <dd>
+            <a href="#livingston">Livingston Dining Commons</a>
+            <div id="livingston" class="content">
+              <dl class="tabs" data-tab>
+                <dd><a href="#livi_breakfast">Breakfast</a></dd>
+                <dd><a href="#livi_lunch">Lunch</a></dd>
+                <dd><a href="#livi_dinner">Dinner</a></dd>
+                <dd><a href="#livi_takeout">Takeout</a></dd>
+              </dl>
+              <div class="tabs-content">
+                {% for meal in food["livi"] %}
                 <div class="content" id="{{meal}}">
                   {% if food["livi"][meal] %}
-                    {% for genre in food["livi"][meal] %}
-                      <span class="label">{{ genre["name"] }}</span>
-                      <ul class="no-bullet">
-                      {% for item in genre["items"] %}
-                        <li>{{ item }}</li>
-                      {% endfor %}
-                      </ul>
+                  {% for genre in food["livi"][meal] %}
+                  <span class="label">{{ genre["name"] }}</span>
+                  <ul class="no-bullet">
+                    {% for item in genre["items"] %}
+                    <li>{{ item }}</li>
                     {% endfor %}
+                  </ul>
+                  {% endfor %}
                   {% else %}
-                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  <div class="panel callout radius"><p>Menu unavailable</p></div>
                   {% endif %}
                 </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        </dd>
+          </dd>
 
-        <dd>
-          <a href="#brower">Brower Commons</a>
-          <div id="brower" class="content">
-            <dl class="tabs" data-tab>
-              <dd><a href="#brower_breakfast">Breakfast</a></dd>
-              <dd><a href="#brower_lunch">Lunch</a></dd>
-              <dd><a href="#brower_dinner">Dinner</a></dd>
-              <dd><a href="#brower_takeout">Takeout</a></dd>
-            </dl>
-            <div class="tabs-content">
-              {% for meal in food["brower"] %}
+          <dd>
+            <a href="#brower">Brower Commons</a>
+            <div id="brower" class="content">
+              <dl class="tabs" data-tab>
+                <dd><a href="#brower_breakfast">Breakfast</a></dd>
+                <dd><a href="#brower_lunch">Lunch</a></dd>
+                <dd><a href="#brower_dinner">Dinner</a></dd>
+                <dd><a href="#brower_takeout">Takeout</a></dd>
+              </dl>
+              <div class="tabs-content">
+                {% for meal in food["brower"] %}
                 <div class="content" id="{{meal}}">
                   {% if food["brower"][meal] %}
-                    {% for genre in food["brower"][meal] %}
-                      <span class="label">{{ genre["name"] }}</span>
-                      <ul class="no-bullet">
-                      {% for item in genre["items"] %}
-                        <li>{{ item }}</li>
-                      {% endfor %}
-                      </ul>
+                  {% for genre in food["brower"][meal] %}
+                  <span class="label">{{ genre["name"] }}</span>
+                  <ul class="no-bullet">
+                    {% for item in genre["items"] %}
+                    <li>{{ item }}</li>
                     {% endfor %}
+                  </ul>
+                  {% endfor %}
                   {% else %}
-                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  <div class="panel callout radius"><p>Menu unavailable</p></div>
                   {% endif %}
                 </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        </dd>
+          </dd>
 
-        <dd>
-          <a href="#neilson">Neilson Dining Hall</a>
-          <div id="neilson" class="content">
-            <dl class="tabs" data-tab>
-              <dd><a href="#neilson_breakfast">Breakfast</a></dd>
-              <dd><a href="#neilson_lunch">Lunch</a></dd>
-              <dd><a href="#neilson_dinner">Dinner</a></dd>
-              <dd><a href="#neilson_takeout">Takeout</a></dd>
-            </dl>
-            <div class="tabs-content">
-              {% for meal in food["neilson"] %}
+          <dd>
+            <a href="#neilson">Neilson Dining Hall</a>
+            <div id="neilson" class="content">
+              <dl class="tabs" data-tab>
+                <dd><a href="#neilson_breakfast">Breakfast</a></dd>
+                <dd><a href="#neilson_lunch">Lunch</a></dd>
+                <dd><a href="#neilson_dinner">Dinner</a></dd>
+                <dd><a href="#neilson_takeout">Takeout</a></dd>
+              </dl>
+              <div class="tabs-content">
+                {% for meal in food["neilson"] %}
                 <div class="content" id="{{meal}}">
                   {% if food["neilson"][meal] %}
-                    {% for genre in food["neilson"][meal] %}
-                      <span class="label">{{ genre["name"] }}</span>
-                      <ul class="no-bullet">
-                      {% for item in genre["items"] %}
-                        <li>{{ item }}</li>
-                      {% endfor %}
-                      </ul>
+                  {% for genre in food["neilson"][meal] %}
+                  <span class="label">{{ genre["name"] }}</span>
+                  <ul class="no-bullet">
+                    {% for item in genre["items"] %}
+                    <li>{{ item }}</li>
                     {% endfor %}
+                  </ul>
+                  {% endfor %}
                   {% else %}
-                    <div class="panel callout radius"><p>Menu unavailable</p></div>
+                  <div class="panel callout radius"><p>Menu unavailable</p></div>
                   {% endif %}
                 </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
+          </dd>
+        </dl>
+
+
+      </div></div>
+      <!-- End content  -->
+
+      <!-- Begin Footer -->
+      <div class="row">
+        <div class="large-12 columns">
+        <hr/>
+          <div class="large-6 columns">
+            <p>Last updated 21 April 2014</p>
           </div>
-        </dd>
-      </dl>
 
+          <div class="large-6 columns">
+            <ul class="inline-list right" >
+              <li><a href="" >Home</a></li>
+              <li><a href="#">Buses</a></li>
+              <li><a href="/weather">Weather</a></li>
+              <li><a href="#">Dining</a></li>
+              <li><a href="#">Calendar</a></li>
+            </ul>
+          </div>
 
-    </div>
-    <!-- End content  -->
-
-    <!-- Begin Footer -->
-    <div class="row">
-      <hr/>
-      <div class="large-12 columns">
-        <div class="large-6 columns">
-          <p>Last updated 20 April 2014</p>
         </div>
-
-        <div class="large-6 columns">
-          <ul class="inline-list right" >
-            <li><a href="" >Home</a></li>
-            <li><a href="#">Buses</a></li>
-            <li><a href="/weather">Weather</a></li>
-            <li><a href="#">Dining</a></li>
-            <li><a href="#">Calendar</a></li>
-          </ul>
-        </div>
-
       </div>
-    </div>
 
-    <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/foundation/foundation.equalizer.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/foundation/foundation.magellan.js') }}"></script>
-    <script>
+      <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/foundation/foundation.equalizer.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/foundation/foundation.magellan.js') }}"></script>
+      <script>
       $(document).foundation();
-			setInterval("time()", 200);
-    </script>
-  </body>
-</html>
+      setInterval("time()", 200);
+      </script>
+    </body>
+    </html>
