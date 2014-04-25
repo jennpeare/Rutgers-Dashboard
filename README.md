@@ -20,26 +20,30 @@ We made a dashboard web application intended for Rutgers students. It displays i
 ###Final Design
 Our initial idea was to display useful information on a scrolling LED screen powered by an Arduino. This was later changed to the Raspberry Pi and display monitor, since it would provide more space and capability to display more useful information. The information is a web application written mostly in Python and styled using the Foundation framework.
 
-![Arduino LED screen](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/arduino.jpg =450x "Arduino LED screen")
-
-***
-
-![Dashboard Screenshot](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/dashboard.png =450x  "Dashboard Screenshot")
-[picture for arduino]
-
-[picture for raspberry pi and monitor]
-
-[]
-
-
-
-- Final design for your system
-
 ## Results
-- Qualitative: Pictures, videos, descriptions
-- Quantitative: if you have them and it makes sense
+![Arduino LED screen](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/arduino.jpg "Arduino LED screen")
+
+	Previous attempt to display information on an Arduino.
+
+![Dashboard Screenshot](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/dashboard.png "Dashboard Screenshot")
+	
+	Final version of the web application
+
+[pi picture]
+
+	Hardware setup
 
 ## Final thoughts
-- Future work, extensions
-- Pitfalls and snags
-- Things you'd do differently next time
+###Future work, extensions
+- Possibly make it into a Chrome extension
+- Include current location detection for Nextbus and food menus
+- Applications for other schools (useful not only for Rutgers students)
+- User customization: they can pick widgets to display
+
+###Pitfalls and snags
+- A lot of trouble getting initial project idea (Arduino) to work
+	- Issue with LED displaying scrolling text: would not scroll on one line
+- Lack of experience with Python and Raspberry Pi, trouble setting things up at first
+
+###Things you'd do differently next time
+- More planning and sketching out ideas before diving into code
