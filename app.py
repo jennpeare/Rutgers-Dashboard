@@ -2,13 +2,15 @@ import flask, weather, food, quote, bus
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
+'''
 @app.route("/")
 @app.route("/index.html")
 def index():
-    return render_template("index.html", weather = weather.get_weather(), quote = quote.format_quote(quote.get_quote()))
+    return render_template("test.html", weather = weather.get_weather(), quote = quote.format_quote(quote.get_quote()))
+'''
 
-@app.route("/test.html")
+@app.route("/")
+@app.route("/index.html")
 def test():
     return render_template("test.html",
       weather = weather.get_weather(),
