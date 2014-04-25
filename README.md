@@ -20,6 +20,11 @@ We made a dashboard web application intended for Rutgers students. It displays i
 ###Final Design
 Our initial idea was to display useful information on a scrolling LED screen powered by an Arduino. This was later changed to the Raspberry Pi and display monitor, since it would provide more space and capability to display more useful information. The information is a web application written mostly in Python and styled using the Foundation framework.
 
+![Arduino LED screen](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/arduino.jpg =450x "Arduino LED screen")
+
+***
+
+![Dashboard Screenshot](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/dashboard.png =450x  "Dashboard Screenshot")
 [picture for arduino]
 
 [picture for raspberry pi and monitor]
