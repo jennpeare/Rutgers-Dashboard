@@ -14,11 +14,14 @@ We made a dashboard web application intended for Rutgers students. It displays i
 ###Key Software
 - Arduino (previous attempt)
 - Raspberry Pi
+- Display screen (Lilliput)
 - Web server
-- Various APIs (wunderground, nextbus)
+- Various APIs (wunderground, nextbus, etc.)
 
 ###Final Design
-Our initial idea was to display useful information on a scrolling LED screen powered by an Arduino. This was later changed to the Raspberry Pi and display monitor, since it would provide more space and capability to display more useful information. The information is a web application written mostly in Python and styled using the Foundation framework.
+Our initial idea was to display useful information on a scrolling LED screen powered by an Arduino. This was later changed to the Raspberry Pi and display monitor, since it would provide more space and capability to display more useful information. The information is a web application written in Python, styled with the Foundation framework, and served through Flask.
+
+To run the script, type `python app.py`. This will spin up a localhost server at `http://0.0.0.0:8080`, where the dashboard will be displayed. If this script is run on the hackerspace server, the app can be reached at `http://hs-rack2.cs.rutgers.edu:8080`. Anyone connected to the Rutgers network can reach this page.
 
 ## Results
 ![Arduino LED screen](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/arduino.jpg "Arduino LED screen")
@@ -29,16 +32,17 @@ Our initial idea was to display useful information on a scrolling LED screen pow
 	
 	Final version of the web application
 
-[pi picture]
+![Pi Setup](https://raw.githubusercontent.com/jennpeare/hackerspace_proj/master/static/img/pisetup.jpg "Pi Setup")
 
-	Hardware setup
+	Raspberry Pi and Lilliput display screen setup
 
 ## Final thoughts
 ###Future work, extensions
-- Possibly make it into a Chrome extension
+- Fix the clock javascript so that it will display EST instead of reading it from local computer time
 - Include current location detection for Nextbus and food menus
 - Applications for other schools (useful not only for Rutgers students)
 - User customization: they can pick widgets to display
+- Possibly make it into a Chrome extension
 
 ###Pitfalls and snags
 - A lot of trouble getting initial project idea (Arduino) to work
