@@ -3,3 +3,5 @@ secrets.py
 *.pyc
 .Python
 *.swp
+.DS_Store
+*/.DS_Store
